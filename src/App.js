@@ -44,22 +44,22 @@ class App extends React.Component {
       <div className="App">
         <h1>Lifestyle Trading Bot Strategy</h1>
         <form>
-          <p>Enter numbers without commas (,) or dollar signs ($). Yearly Pocket is how much you plan to take out of your fund each year defaults to 25%, yu can enter a new value as a decimal. For 30 % you would enter 0.3. Check out the bot <a href="https://t.me/LifeStyleTrading_Bot?start=1wgcys1037">here</a>.</p>
+          <p>Enter numbers without commas (,) or dollar signs ($). Yearly Pocket is how much you plan to take out of your fund each year, it defaults to 25% (0.25), any number between 0 and 1 is acceptable (for 30% you would enter 0.30). Check out the Lifestyle Trading Bot bot <a href="https://t.me/LifeStyleTrading_Bot?start=1wgcys1037">here</a>.</p>
           
           <div className="formFields">
           <label>
             Investment (USD):
           </label>
-          <input onChange={this.handleInvestmentChange} className="investment" type="text" id="investment" name="investment" />
+          <input onChange={this.handleInvestmentChange} className="investment" type="text" id="investment" name="investment" /><br/>
           <label>
             Years (USD):
           </label>
-            <input onChange={this.handleYearsChange} className="years" type="text" id="years" name="years" />
+            <input onChange={this.handleYearsChange} className="years" type="text" id="years" name="years" /><br/>
           
           <label>
             Yearly Pocket:
           </label>
-            <input onChange={this.handlePocketChange} className="pocket" type="text" placeholder="0.25" name="pocket" /> <small>Defaults to 25% per year</small>
+            <input onChange={this.handlePocketChange} className="pocket" type="text" placeholder="0.25" name="pocket" />
           </div>
             
           <button onClick={this.handleClick}>Submit</button>
