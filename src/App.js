@@ -33,7 +33,7 @@ export default function App() {
       return;
     }
 
-    if (!years) {
+    if (!yrs) {
       alert("Please enter the number of years you want to invest")
       return;
     }
