@@ -7,7 +7,7 @@ import "./App.css";
 export default function App() {
 
   const [investment, setInvestment] = useState('');
-  const [years, setYears] = useState('10');
+  const [years, setYears] = useState('');
   const [pocket, setPocket] = useState('0.25');
   const [strategy, setStrategy] = useState({});
 
@@ -26,7 +26,7 @@ export default function App() {
     setStrategy({})
     let invest = document.getElementById('investment').value
     let yrs = document.getElementById('years').value
-    let pckt = document.getElementById('pocket').value
+    let pckt = parseFloat(document.getElementById('pocket').value)
     
     if (!invest) {
       alert("Please enter a valid investment amount")

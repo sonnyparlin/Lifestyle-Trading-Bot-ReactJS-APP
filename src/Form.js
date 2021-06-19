@@ -15,7 +15,7 @@ export default function Form(props) {
         <label>
           Years (USD):
         </label>
-          <input className="years" defaultValue={props.years} type="text" id="years" name="years" /><br/>
+          <input className="years" placeholder="10" defaultValue={props.years} type="text" id="years" name="years" /><br/>
         
         <label>
           Yearly Pocket:

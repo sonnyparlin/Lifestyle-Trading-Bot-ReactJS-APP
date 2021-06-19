@@ -7,9 +7,31 @@
   margin-bottom:20px;
 }
 
-.investment, .years, .pocket {
+input, .investment, .years, .pocket {
   border:1px solid #888;
   border-radius:5%;
+  color: #555;
+}
+
+input {
+  padding:2.5px;
+  color:#555;
+}
+
+input:focus {
+  outline: none !important;
+  border:1px solid #555;
+  box-shadow: 0 0 10px #719ECE;
+  color: #555;
+}
+/* Change the white to any color */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active
+{
+ -webkit-box-shadow: 0 0 0 30px white inset !important;
+ color:#555;
 }
 
 .App form {
@@ -58,9 +80,8 @@ button {
   border-radius:10px;
 }
 
-input {
-  padding:2.5px;
-  color:#555;
+button:focus {
+  outline:0px;
 }
 
 @keyframes App-logo-spin {
