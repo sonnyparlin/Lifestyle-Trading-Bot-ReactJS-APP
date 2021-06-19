@@ -28,13 +28,8 @@ export default function App() {
     let yrs = document.getElementById('years').value
     let pckt = parseFloat(document.getElementById('pocket').value)
     
-    if (!invest) {
-      alert("Please enter a valid investment amount")
-      return;
-    }
-
-    if (!yrs) {
-      alert("Please enter the number of years you want to invest")
+    if (!invest || !yrs) {
+      alert("Please enter a valid investment amount and the number of years you want to invest")
       return;
     }
 
@@ -47,22 +42,24 @@ export default function App() {
     return  <h1>Lifestyle Trading Bot Strategy</h1>
   }
 
-  if('strategy' in strategy) {
-    return (
-      <div className="App">
-        <Greeting />
-        <Form investment={investment} years={years} pocket={pocket} handleClick={handleClick} />
-        <ReactJson src={strategy} />
-      </div>
-    )
-  } else {
+  const DataResponse = (props) => {
     let loader = investment ? "Loading..." : ""
-    return (
-      <div className="App">
-        <Greeting />
-        <Form investment={investment} years={years} pocket={pocket} handleClick={handleClick} />
-        {loader}
-      </div>
-    )
+
+    if ('strategy' in strategy) {
+      return <ReactJson src={strategy} />
+    } else {
+      return loader
+    }
   }
+    
+  return (
+    <div className="App">
+      <Greeting />
+      <Form investment={investment} 
+            years={years} 
+            pocket={pocket} 
+            handleClick={handleClick} />
+      <DataResponse />
+    </div>
+  )
 }
