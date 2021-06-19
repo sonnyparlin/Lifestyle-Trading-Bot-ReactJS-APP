@@ -6,7 +6,7 @@ import "./App.css";
 
 export default function App() {
 
-  const [investment, setInvestment] = useState('1000');
+  const [investment, setInvestment] = useState('');
   const [years, setYears] = useState('10');
   const [pocket, setPocket] = useState('0.25');
   const [strategy, setStrategy] = useState({});
@@ -22,11 +22,25 @@ export default function App() {
   });
 
   const handleClick = (e) => {
-    setStrategy({})
     e.preventDefault();
-    setInvestment(document.getElementById('investment').value)
-    setYears(document.getElementById('years').value)
-    setPocket(document.getElementById('pocket').value)
+    setStrategy({})
+    let invest = document.getElementById('investment').value
+    let yrs = document.getElementById('years').value
+    let pckt = document.getElementById('pocket').value
+    
+    if (!invest) {
+      alert("Please enter a valid investment amount")
+      return;
+    }
+
+    if (!years) {
+      alert("Please enter the number of years you want to invest")
+      return;
+    }
+
+    setInvestment(invest)
+    setYears(yrs)
+    setPocket(pckt)
   }
 
   if('strategy' in strategy) {
@@ -36,20 +50,21 @@ export default function App() {
         <Form investment={investment}
             years={years}
             pocket={pocket} 
-          onClick={handleClick} />
+          handleClick={handleClick} />
         <ReactJson src={strategy} />
       </div>
     )
   }
 
+  let loader = investment ? "Loading..." : ""
   return (
     <div className="App">
       <h1>Lifestyle Trading Bot Strategy</h1>
       <Form investment={investment}
             years={years}
             pocket={pocket} 
-          onClick={handleClick} />
-      Loading...
+          handleClick={handleClick} />
+      {loader}
     </div>
   )
 }
