@@ -43,28 +43,26 @@ export default function App() {
     setPocket(pckt)
   }
 
+  const Greeting = (props) => {
+    return  <h1>Lifestyle Trading Bot Strategy</h1>
+  }
+
   if('strategy' in strategy) {
     return (
       <div className="App">
-        <h1>Lifestyle Trading Bot Strategy</h1>
-        <Form investment={investment}
-            years={years}
-            pocket={pocket} 
-          handleClick={handleClick} />
+        <Greeting />
+        <Form investment={investment} years={years} pocket={pocket} handleClick={handleClick} />
         <ReactJson src={strategy} />
       </div>
     )
+  } else {
+    let loader = investment ? "Loading..." : ""
+    return (
+      <div className="App">
+        <Greeting />
+        <Form investment={investment} years={years} pocket={pocket} handleClick={handleClick} />
+        {loader}
+      </div>
+    )
   }
-
-  let loader = investment ? "Loading..." : ""
-  return (
-    <div className="App">
-      <h1>Lifestyle Trading Bot Strategy</h1>
-      <Form investment={investment}
-            years={years}
-            pocket={pocket} 
-          handleClick={handleClick} />
-      {loader}
-    </div>
-  )
 }
