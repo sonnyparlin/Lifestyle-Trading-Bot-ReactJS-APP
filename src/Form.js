@@ -4,8 +4,14 @@ import "./App.css";
 
 export default function Form(props) {
     return (
-        <form>
-        <p>Enter numbers without commas (,) or dollar signs ($). Yearly Pocket is how much you plan to take out of your fund each year, it defaults to 25% (0.25), any number between 0 and 1 is acceptable (for 30% you would enter 0.30). Check out the Lifestyle Trading Bot bot <a href="https://t.me/LifeStyleTrading_Bot?start=1wgcys1037">here</a>.</p> <p><strong>Your first request may take a few seconds while back-end servers spin up.</strong></p>
+        <form className="ltbcForm">
+        <p>Enter numbers without commas (,) or dollar signs ($). Yearly Pocket 
+          is how much you plan to take out of your fund each year, it defaults 
+          to 25% (0.25), any number between 0 and 1 is acceptable (for 30% you 
+          would enter 0.30). Check out the Lifestyle Trading Bot bot&nbsp;
+          <a href="https://t.me/LifeStyleTrading_Bot?start=1wgcys1037">here</a>.</p> 
+          <p><strong>Your first request may take a few seconds while back-end 
+            servers spin up.</strong></p>
         
         <div className="formFields">
         <label>

@@ -15,27 +15,26 @@ export default function App() {
   url += `investment=${investment}&years=${years}&yearlypocket=${pocket}`
 
   useEffect(() => {
-    if (investment) {
-      fetch(url).then(response => response.json())
-        .then(data => setStrategy({strategy: JSON.parse(data)}));
-    }
-  });
+    if (!investment) return;
+    setStrategy({})
+    fetch(url).then(response => response.json())
+      .then(data => setStrategy({strategy: JSON.parse(data)}));
+  }, [investment, years, url]);
 
   const handleClick = (e) => {
     e.preventDefault();
-    setStrategy({})
-    let invest = document.getElementById('investment').value
-    let yrs = document.getElementById('years').value
-    let pckt = parseFloat(document.getElementById('pocket').value)
+    let invest = document.getElementById('investment') ? document.getElementById('investment').value : ""    
+    let yrs = document.getElementById('years') ? document.getElementById('years').value : ""
+    let pckt = document.getElementById('pocket') ? parseFloat(document.getElementById('pocket').value) : ""
     
     if (!invest || !yrs) {
       alert("Please enter a valid investment amount and the number of years you want to invest")
       return;
+    } else {
+      setInvestment(invest)
+      setYears(yrs)
+      setPocket(pckt)
     }
-
-    setInvestment(invest)
-    setYears(yrs)
-    setPocket(pckt)
   }
 
   const Greeting = (props) => {
