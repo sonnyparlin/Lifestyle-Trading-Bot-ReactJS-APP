@@ -1,7 +1,70 @@
 // client/src/App.js
 import React from "react";
+//import Select from 'react-select'
 import "./App.css";
 
+/*
+const selectOptions = [
+  { value: '1', label: 'Every Day'},
+  { value: '7', label: 'Every Week' },
+  { value: '30', label: 'Every Month' },
+  { value: '91', label: 'Every Quarter' },
+  { value: '182', label: 'Every Six Months' },
+];
+
+const colourStyles = {
+  container: (provided) => ({
+    ...provided,
+    display: 'inline-block',
+    width: '200px',
+    minHeight: '1px',
+    textAlign: 'left',
+    border: 'none',
+    float: 'right',
+    marginRight:'170px',
+  }),
+  control: (provided) => ({
+    ...provided,
+    border: '1px solid #888',
+    borderRadius: '4px',
+    minHeight: '1px',
+    height: '30px',
+  }),
+  input: (provided) => ({
+    ...provided,
+    minHeight: '1px',
+  }),
+  dropdownIndicator: (provided) => ({
+    ...provided,
+    minHeight: '1px',
+    paddingTop: '0',
+    paddingBottom: '0',
+    color: '#757575',
+  }),
+  indicatorSeparator: (provided) => ({
+    ...provided,
+    minHeight: '1px',
+    height: '12px',
+  }),
+  clearIndicator: (provided) => ({
+    ...provided,
+    minHeight: '1px',
+  }),
+  valueContainer: (provided) => ({
+    ...provided,
+    minHeight: '1px',
+    height: '30px',
+    paddingTop: '0',
+    paddingBottom: '0',
+  }),
+  singleValue: (provided) => ({
+    ...provided,
+    minHeight: '1px',
+    paddingBottom: '0px',
+    paddingTop: '4px'
+  }),
+};
+*/
 export default function Form(props) {
     return (
         <form className="ltbcForm">
@@ -26,7 +89,20 @@ export default function Form(props) {
         <label>
           Yearly Pocket:
         </label>
-          <input className="pocket" defaultValue={props.pocket} type="text" id="pocket" placeholder="0.25" name="pocket" />
+          <input className="pocket" defaultValue={props.pocket} type="text" id="pocket" placeholder="0.25" name="pocket" /><br/>
+        
+        {/*
+        <label>
+          Reinvest:
+        </label>
+          <Select
+            styles={colourStyles}
+            id="reinvest"
+            name="reinvest"
+            defaultValue={props.selectedOption}
+            onChange={props.setSelectedOption}
+            options={selectOptions}
+        /> */}
         </div>
           
         <button onClick={props.handleClick}>Submit</button>
