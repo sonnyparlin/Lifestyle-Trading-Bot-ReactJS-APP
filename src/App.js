@@ -34,6 +34,14 @@ export default function App() {
     setPocket(pckt)
   }
 
+  function checkInterval() {
+    let i = document.getElementById('pocket') ? document.getElementById('pocket').value : ""
+  
+    if (i >= 0.4) {
+      document.getElementById('pocket').value = '0.4'
+    }
+  }
+
   const Greeting = (props) => {
     return  <h1>Lifestyle Trading Bot Strategy</h1>
   }
@@ -54,7 +62,8 @@ export default function App() {
       <Form investment={investment}
             //setSelectedOption={setSelectedOption}
             years={years} 
-            pocket={pocket} 
+            pocket={pocket}
+            checkInterval={checkInterval} 
             handleClick={handleClick} />
       <DataResponse />
     </div>

@@ -65,12 +65,13 @@ const colourStyles = {
   }),
 };
 */
+
 export default function Form(props) {
     return (
         <form className="ltbcForm">
         <p>Enter numbers without commas (,) or dollar signs ($). Yearly Pocket 
           is how much you plan to take out of your fund each year, it defaults 
-          to 25% (0.25), any number between 0 and 1 is acceptable (for 30% you 
+          to 25% (0.25), any number between 0 and 0.4 is acceptable (for 30% you 
           would enter 0.30).</p> <p>Check out the <a target="_new" href="https://t.me/LifeStyleTrading_Bot?start=1wgcys1037">Lifestyle Trading Bot</a> on <a target="_new" href="https://telegram.org/">Telegram</a>.</p> 
         
         <div className="formFields">
@@ -86,7 +87,7 @@ export default function Form(props) {
         <label>
           Yearly Pocket:
         </label>
-          <input className="pocket" defaultValue={props.pocket} type="text" id="pocket" placeholder="0.25" name="pocket" /><br/>
+          <input className="pocket" onChange={props.checkInterval} defaultValue={props.pocket} type="text" id="pocket" placeholder="0.25" name="pocket" /><br/>
         
         {/*
         <label>
