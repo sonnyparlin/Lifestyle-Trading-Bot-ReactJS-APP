@@ -59,7 +59,7 @@ export default function Calculator(investment, yrs, pckt) {
         "In your Pocket": "$${money(thisYearsPocket)}",
         "Ready to reinvest": "$${money(yearlyInterestEarned - parseInt(thisYearsPocket))}",
         "Worth to date": "$${money(yearlyInterestEarned - parseInt(thisYearsPocket))}",
-        "Millionare": "${millionare}"} ${i==1 ? '':','}`)
+        "Millionare": "${millionare}"} ${i===1 ? '':','}`)
 
         // Re-invest
         investment = parseFloat(yearlyInterestEarned) - parseFloat(thisYearsPocket);
