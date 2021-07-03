@@ -1,12 +1,11 @@
 
-export default function Calculator(investment, yrs, pckt) {
+export default function Calculator(investment, yrs, pckt, reinvest) {
     if (!investment)
         return
         
     let interest = 0.00466
     let initialInvestment = investment
     let yearlyPocket = pckt
-    const reinvest = 0
 
     if (yearlyPocket === '')
     yearlyPocket = 0.25
@@ -24,9 +23,7 @@ export default function Calculator(investment, yrs, pckt) {
 
     const money = x => {
     x = Number.parseFloat(x).toFixed(2);
-    //return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    //return new Intl.NumberFormat({ maximumSignificantDigits: 3 }).format(x);
     };
 
     const compound = (investment=1000, interest=0.00466, years=5, yearlyPocket = 0.25, reinvest = 365) => {
