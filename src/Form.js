@@ -71,18 +71,18 @@ export default function Form(props) {
         <form className="ltbcForm">
         <p>Enter numbers without commas (,) or dollar signs ($). Yearly Pocket 
           is how much you plan to take out of your fund each year, it defaults 
-          to 25% (0.25), any number between 0 and 0.4 is acceptable (for 30% you 
+          to 0%, any number between 0 and 0.4 is acceptable (for 30% you 
           would enter 0.30).</p> <p>Check out the <a target="_new" href="https://t.me/LifeStyleTrading_Bot?start=1wgcys1037">Lifestyle Trading Bot</a> on <a target="_new" href="https://telegram.org/">Telegram</a>.</p> 
         
         <div className="formFields">
         <label>
           Investment (USD):
         </label>
-        <input className="investment" placeholder="1000" defaultValue={props.investment} type="text" id="investment" name="investment" /><br/>
+        <input className="investment" placeholder="" defaultValue={props.investment} type="text" id="investment" name="investment" /><br/>
         <label>
           Years (USD):
         </label>
-          <input className="years" placeholder="10" defaultValue={props.years} type="text" id="years" name="years" /><br/>
+          <input className="years" placeholder="" defaultValue={props.years} type="text" id="years" name="years" /><br/>
         
         <label>
           Yearly Pocket:

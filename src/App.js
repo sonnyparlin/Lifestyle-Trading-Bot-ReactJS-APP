@@ -10,12 +10,12 @@ export default function App() {
   const [investment, setInvestment] = useState('');
   const [years, setYears] = useState('');
   //const [selectedOption, setSelectedOption] = useState(null);
-  const [pocket, setPocket] = useState('0.25');
+  const [pocket, setPocket] = useState('0');
   const [strategy, setStrategy] = useState({});
 
   useEffect(() => {
     if (!investment) return;
-    setStrategy(Calculator(investment, years, pocket))
+    setStrategy(Calculator(investment, years, pocket, '6 months'))
   }, [investment, years, pocket]);
 
   function handleClick(e) {
@@ -30,7 +30,7 @@ export default function App() {
     } 
 
     setInvestment(invest)
-    setYears(yrs)
+    setYears(parseInt(yrs))
     setPocket(pckt)
   }
 
