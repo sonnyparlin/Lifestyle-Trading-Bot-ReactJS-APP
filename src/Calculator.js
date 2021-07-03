@@ -80,7 +80,7 @@ export default function Calculator(investment, yrs, pckt) {
     jsonMessage += '"years":['
     jsonMessage += yearlyStats.join('')
     jsonMessage += "]}}"
-    //console.log(jsonMessage)
+    //console.log(jsonMessage) //
 
     return JSON.parse(jsonMessage);
 }
