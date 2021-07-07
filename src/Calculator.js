@@ -18,8 +18,13 @@ export default function Calculator(investment, years, reinvest) {
         let balance=0
         let enoughToReinvestCounter=0
         let final=0;
+        let reinvestLABEL='Never'
+
+        reinvestLABEL = reinvestEvery.label
+        if (!reinvestLABEL)
+          reinvestLABEL = 'Never'
       
-        if (reinvestEvery.label !== 'Never' && reinvestEvery.label !== undefined) {
+        if (reinvestLABEL !== 'Never' && reinvestLABEL !== undefined) {
 
             while (years > 0) {
                 //console.log('Year: '+yearCounter)
@@ -27,7 +32,7 @@ export default function Calculator(investment, years, reinvest) {
                 oginvestment=parseFloat(oginvestment)
                 for (let x=1;x<367;x++) {
                     
-                    switch(reinvestEvery.label) {
+                    switch(reinvestLABEL) {
                         case 'DAILY':
                           reinvestbalance=100
                         break;
@@ -60,7 +65,7 @@ export default function Calculator(investment, years, reinvest) {
                     else {
                         console.log("Reinvesting " + parseFloat(balance).toFixed(2))
                         enoughToReinvestCounter++
-                        if (reinvestEvery.label === 'YEARLY')
+                        if (reinvestLABEL === 'YEARLY')
                             oginvestment = parseFloat(balance)
                         else
                             oginvestment += parseFloat(balance)
@@ -70,11 +75,12 @@ export default function Calculator(investment, years, reinvest) {
                 }
             }
         }
+
         stmt = `{"investment": "${originalInvestment}",`
-        if (reinvestEvery.label === 'Never')
-          stmt+= `"strategy": "You chose to not to reinvest.",`
+        if (reinvestLABEL === 'Never')
+          stmt+= `"strategy": "You chose not to reinvest.",`
         else
-          stmt+= `"strategy": "You chose to reinvest ${reinvestEvery.label.toLowerCase()} for ${originalYears} years. You reinvested ${enoughToReinvestCounter} times earning you $${money(oginvestment)}.",`
+          stmt+= `"strategy": "You chose to reinvest ${reinvestLABEL.toLowerCase()} for ${originalYears} years. You reinvested ${enoughToReinvestCounter} times earning you $${money(oginvestment)}.",`
         
         if (balance)
           stmt+=`"balance": "${money(balance)}",`
@@ -83,12 +89,12 @@ export default function Calculator(investment, years, reinvest) {
         
         stmt+=`"message": "You currently have: $${money(oginvestment)} invested, increasing your balance by $${money(oginvestment * i)} per day. `
 
-        if (reinvestEvery.label === 'Never')
+        if (reinvestLABEL === 'Never')
           stmt+=`At the end of year ${originalYears} you will be paid $${money(final)}",`
         else
           stmt+=`Your reinvestments have added 1 year to your timeline. At the end of year ${originalYears +1} you will be paid $${money(final)}",`          
         
-        if (reinvestEvery.label === 'Never') {
+        if (reinvestLABEL === 'Never') {
             stmt+=`"profit": "$${money(oginvestment * i * 365 - originalInvestment)}"}`
         } else
             stmt+=`"profit": "$${money(final + balance - originalInvestment)}"}`

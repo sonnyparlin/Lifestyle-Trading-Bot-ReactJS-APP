@@ -124,6 +124,15 @@ export default function App() {
   const DataResponse = () => {
     if (strategy.hasOwnProperty('investment')) {
       //return <ReactJson src={strategy} />
+  
+      setTimeout(() => {
+      window.scroll({
+        top: document.body.offsetHeight,
+        left: 0, 
+        behavior: 'smooth',
+      });
+    }, 300);
+  
       return (
         <>
         <h4>Initial investment: <span style={{color:'red'}}>${strategy.investment}</span></h4>
