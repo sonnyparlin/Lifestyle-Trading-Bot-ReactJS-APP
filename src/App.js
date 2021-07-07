@@ -9,20 +9,20 @@ export default function App() {
   
   const [investment, setInvestment] = useState('');
   const [years, setYears] = useState('');
-  //const [selectedOption, setSelectedOption] = useState(null);
-  const [pocket, setPocket] = useState('0');
+  const [selectedOption, setSelectedOption] = useState(null);
   const [strategy, setStrategy] = useState({});
 
   useEffect(() => {
     if (!investment) return;
-    setStrategy(Calculator(investment, years, pocket, '6 months'))
-  }, [investment, years, pocket]);
+    setStrategy(JSON.parse(Calculator(investment, years, selectedOption)))
+  }, [investment, years, selectedOption]);
 
   function handleClick(e) {
     e.preventDefault();
     let invest = document.getElementById('investment') ? document.getElementById('investment').value : ""    
     let yrs = document.getElementById('years') ? document.getElementById('years').value : ""
-    let pckt = document.getElementById('pocket') ? parseFloat(document.getElementById('pocket').value) : ""
+    if (!selectedOption)
+      setSelectedOption("Never")
 
     if (!invest || !yrs) {
       alert("Please enter a valid investment amount and the number of years you want to invest")
@@ -31,39 +31,31 @@ export default function App() {
 
     setInvestment(invest)
     setYears(parseInt(yrs))
-    setPocket(pckt)
   }
 
-  function checkInterval() {
-    let i = document.getElementById('pocket') ? document.getElementById('pocket').value : ""
-  
-    if (i >= 0.4) {
-      document.getElementById('pocket').value = '0.4'
-    }
+  function checkYears() {
+    let i = document.getElementById('years') ? document.getElementById('years').value : ""
+    document.getElementById('years').value = parseInt(i)
   }
 
-  const Greeting = (props) => {
+  const Greeting = () => {
     return  <h1>Lifestyle Trading Bot Strategy</h1>
   }
 
-  const DataResponse = (props) => {
-    let loader = investment ? "Loading..." : ""
-
-    if (strategy && strategy.message && 'years' in strategy.message) {
+  const DataResponse = () => {
+    if (strategy.hasOwnProperty('investment'))
       return <ReactJson src={strategy} />
-    } else {
-      return loader
-    }
+    else
+      return ""
   }
     
   return (
     <div className="App">
       <Greeting />
       <Form investment={investment}
-            //setSelectedOption={setSelectedOption}
+            setSelectedOption={setSelectedOption}
             years={years} 
-            pocket={pocket}
-            checkInterval={checkInterval} 
+            checkYears={checkYears}
             handleClick={handleClick} />
       <DataResponse />
     </div>

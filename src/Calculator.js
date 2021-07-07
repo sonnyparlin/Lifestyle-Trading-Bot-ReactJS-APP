@@ -1,85 +1,103 @@
 
-export default function Calculator(investment, yrs, pckt, reinvest) {
+export default function Calculator(investment, years, reinvest) {
     if (!investment)
         return
-        
-    let interest = 0.00466
-    let initialInvestment = investment
-    let yearlyPocket = pckt
-
-    if (yearlyPocket === '')
-    yearlyPocket = 0.25
-
-    if (yearlyPocket >= 0.5)
-    yearlyPocket = 0.5
-
-    let years = yrs
-
-    let pocket= 0
-    let pocketPerYear= 0
-    let yearlyStats=[]
-    let millionare=false
-    let currentTotal = 0
 
     const money = x => {
-    x = Number.parseFloat(x).toFixed(2);
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        x = Number.parseFloat(x).toFixed(2);
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     };
 
-    const compound = (investment=1000, interest=0.00466, years=5, yearlyPocket = 0.25, reinvest = 365) => {
-    let y = 1;
-    for (let i = years; i > 0; i--) {
-
-        const yearlyInterestEarned = parseFloat((investment * interest) * 365);
-        const dailyInterest = parseFloat(investment * interest)
-        const weeklyInterest = parseFloat(((investment * interest) * 365 ) / 52)
-        const monthlyInterest = parseFloat(((investment * interest) * 365 ) / 12)
-        const quarterlyInterest = parseFloat(((investment * interest) * 365) / 4)
-        const sixMonthInterestEarned = parseFloat((investment * interest) * (365/2))
-        pocket += yearlyInterestEarned * parseFloat(yearlyPocket)
-        let thisYearsPocket=0;
-        thisYearsPocket = parseFloat(yearlyInterestEarned) * parseFloat(yearlyPocket)
-        if (isNaN(thisYearsPocket))
-            thisYearsPocket = Number(0);
-        currentTotal = parseFloat(yearlyInterestEarned) - parseFloat(thisYearsPocket)
-
-        if (parseFloat(investment + yearlyInterestEarned) > 1000000) 
-        millionare=true
+    const compound = (investment, years, reinvestEvery) => {
+        const originalInvestment=investment
+        let oginvestment = originalInvestment
+        const i = 0.00466
+        const originalYears = years;
+        let reinvestbalance=0
+        let stmt;
+        let balance=0
+        let enoughToReinvestCounter=0
+      
+        switch(reinvestEvery.label) {
+          case 'DAILY':
+            reinvestbalance=100
+          break;
+          case 'WEEKLY':
+            reinvestbalance=Math.max(originalInvestment * i * 7, 100)
+          break;
+          case 'MONTHLY':
+            reinvestbalance=Math.max(originalInvestment * i * 30, 100)
+          break;
+          case 'QUARTERLY':
+            reinvestbalance=Math.max(originalInvestment * i * 90, 100)
+          break
+          case 'SIXMONTHS':
+            reinvestbalance=Math.max(originalInvestment * i * 182.5,100)
+          break;
+          case 'YEARLY':
+            reinvestbalance=originalInvestment * i * 365
+            break
+          default:
+            reinvestbalance=0
+            break;
+        }
+      
         
-        yearlyStats.push(`{
-        "Year": "${y++}",
-        "Invested": "$${money(investment)}",
-        "Daily Interest Earned": "$${money(dailyInterest)}",
-        "Weekly Interest Earned": "$${money(weeklyInterest)}",
-        "Monthly Interest Earned": "$${money(monthlyInterest)}",
-        "Quarterly Interest Earned": "$${money(quarterlyInterest)}",
-        "Six months of Interest Earned": "$${money(sixMonthInterestEarned)}", 
-        "Yearly Interest Earned": "$${money(yearlyInterestEarned)}", 
-        "In your Pocket": "$${money(thisYearsPocket)}",
-        "Ready to reinvest": "$${money(yearlyInterestEarned - parseInt(thisYearsPocket))}",
-        "Worth to date": "$${money(yearlyInterestEarned - parseInt(thisYearsPocket))}",
-        "Millionare": "${millionare}"} ${Number(i)===1 ? '':','}`)
+        if (reinvestEvery.label !== 'Never' && reinvestEvery.label !== undefined) {
 
-        // Re-invest
-        investment = parseFloat(yearlyInterestEarned) - parseFloat(thisYearsPocket);
-    }
-    pocketPerYear = parseFloat(pocket) / parseInt(years)
-    return currentTotal;
-    };
+            while (years > 0) {
+                //console.log('Year: '+yearCounter)
+                years--;
+                oginvestment=parseFloat(oginvestment)
+                for (let x=0;x<365;x++) {
+                    console.log('oginvestment '+parseFloat(oginvestment).toFixed(2))
+                    balance += oginvestment * i
+                    console.log('Day: '+x+' ' +parseFloat(balance).toFixed(2))
+            
+                    if (balance < reinvestbalance)
+                        continue;
+                    else {
+                        console.log("we are here")
+                        enoughToReinvestCounter++
+                        oginvestment += parseFloat(balance)
+                        balance = 0
+                        console.log(parseFloat(oginvestment).toFixed(2))
+                    }
+                }
+            }
+        }
+        stmt = `{"investment": "${originalInvestment}",`
+        if (reinvestbalance) {
+          stmt+= `"strategy": "You chose to reinvest ${reinvestEvery.label} for ${originalYears} years. You reinvested ${enoughToReinvestCounter} times earning you ${money(oginvestment)}.",`
+        }
+        stmt+=`"balance": "${money(balance)}",`
+        
+        if (reinvestbalance) {
+          stmt+=`"message": "You currently have: $${money(oginvestment)} invested, increasing your balance by $${money(oginvestment * i)} per day. At the end of year ${originalYears +1} you will be paid $${money(oginvestment * i * 365)}",`
+        }
+        console.log(reinvestEvery.label)
+        if (reinvestEvery.label === undefined) {
 
-    const total = compound(initialInvestment, interest, years, yearlyPocket, reinvest);
+            const answer = () => {
+                balance=0
+                for(let x=0;x<originalYears;x++) {
+                  console.log(parseFloat(oginvestment).toFixed(2) + '\n')
+                  balance += (oginvestment * i) * 365;
+                  oginvestment=balance
+                }
+                return balance
+            }
+            
+            stmt+=`"profit": "$${money(answer())}"}`
+        } else if (reinvestEvery.label === 'Never') {
+            stmt+=`"profit": "$${money(oginvestment * i * 365)}"}`
+        } else
+            stmt+=`"profit": "$${money((oginvestment * i * 365) + balance - originalInvestment)}"}`
 
 
-    let jsonMessage = `{"message": {"Initial investment": "$${money(initialInvestment)}",
-    "Time passed": "${years} years",
-    "Average Pocket per year": "$${money(pocketPerYear)}",
-    "Total pocket": "$${money(pocket)}", 
-    "Total worth": "$${money(total)}",`
+        return JSON.stringify(stmt)
+      }
 
-    jsonMessage += '"years":['
-    jsonMessage += yearlyStats.join('')
-    jsonMessage += "]}}"
-    //console.log(jsonMessage) //
-
-    return JSON.parse(jsonMessage);
+    const strategy = compound(investment, years, reinvest);
+    return JSON.parse(strategy);
 }

@@ -1,15 +1,17 @@
 // client/src/App.js
 import React from "react";
-//import Select from 'react-select'
+import Select from 'react-select'
 import "./App.css";
 
-/*
+
 const selectOptions = [
-  { value: '1', label: 'Every Day'},
-  { value: '7', label: 'Every Week' },
-  { value: '30', label: 'Every Month' },
-  { value: '91', label: 'Every Quarter' },
-  { value: '182', label: 'Every Six Months' },
+  { value: 0, label: 'Never'},
+  { value: 1, label: 'DAILY'},
+  { value: 2, label: 'WEEKLY' },
+  { value: 3, label: 'MONTHLY' },
+  { value: 4, label: 'QUARTERLY' },
+  { value: 5, label: 'SIXMONTHS' },
+  { value: 6, label: 'YEARLY' },
 ];
 
 const colourStyles = {
@@ -64,15 +66,11 @@ const colourStyles = {
     paddingTop: '4px'
   }),
 };
-*/
 
 export default function Form(props) {
     return (
         <form className="ltbcForm">
-        <p>Enter numbers without commas (,) or dollar signs ($). Yearly Pocket 
-          is how much you plan to take out of your fund each year, it defaults 
-          to 0%, any number between 0 and 0.4 is acceptable (for 30% you 
-          would enter 0.30).</p> <p>Check out the <a target="_new" href="https://t.me/LifeStyleTrading_Bot?start=1wgcys1037">Lifestyle Trading Bot</a> on <a target="_new" href="https://telegram.org/">Telegram</a>.</p> 
+        <p>Enter numbers without commas (,) or dollar signs ($). The Lifestyle Trading Bot accepts a deposit made via bitcoin to a one time address it provides to you each time you invest. (Note, only use the bitcoin address once!) As soon as the deposit is made (roughly 30 to 40 minute process after sending depending on network traffic) you will start receiving payments worth 0.466% of what you invested <b>every day</b>. Once your balance reaches $100 you can either take the money out or reinvest it, or leave it there and let the balance build up. When you withdraw, your money will be sent back to the same bitcoin wallet you sent your initial deposit from.</p> <p>Check out the <a target="_new" href="https://t.me/LifeStyleTrading_Bot?start=1wgcys1037">Lifestyle Trading Bot</a> on <a target="_new" href="https://telegram.org/">Telegram</a>.</p> 
         
         <div className="formFields">
         <label>
@@ -80,16 +78,10 @@ export default function Form(props) {
         </label>
         <input className="investment" placeholder="" defaultValue={props.investment} type="text" id="investment" name="investment" /><br/>
         <label>
-          Years (USD):
+          Years:
         </label>
-          <input className="years" placeholder="" defaultValue={props.years} type="text" id="years" name="years" /><br/>
+          <input className="years" onMouseOut={props.checkYears} placeholder="" defaultValue={props.years} type="text" id="years" name="years" /><br/>
         
-        <label>
-          Yearly Pocket:
-        </label>
-          <input className="pocket" onChange={props.checkInterval} defaultValue={props.pocket} type="text" id="pocket" placeholder="0.25" name="pocket" /><br/>
-        
-        {/*
         <label>
           Reinvest:
         </label>
@@ -100,7 +92,7 @@ export default function Form(props) {
             defaultValue={props.selectedOption}
             onChange={props.setSelectedOption}
             options={selectOptions}
-        /> */}
+        />
         </div>
           
         <button onClick={props.handleClick}>Submit</button>
