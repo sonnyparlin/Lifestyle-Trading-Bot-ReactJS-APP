@@ -1,5 +1,5 @@
 // client/src/App.js
-import ReactJson from 'react-json-view';
+//import ReactJson from 'react-json-view';
 import React, {useState, useEffect} from "react";
 import Form from "./Form"
 import Calculator from "./Calculator"
@@ -49,7 +49,7 @@ export default function App() {
         <>
         <h4>Initial investment: <span style={{color:'red'}}>${strategy.investment}</span></h4>
         <p>Strategy: {strategy.strategy}</p>
-        <p>Balance: {strategy.balance}</p>
+        {strategy.balance > 0 ? <p>Balance: {strategy.balance}</p> : ""}
         <p>{strategy.message}</p>
         <h4>Net profit: <span style={{color:'green'}}>{strategy.profit}</span></h4>
         </>

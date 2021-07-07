@@ -68,12 +68,13 @@ export default function Calculator(investment, years, reinvest) {
         }
         stmt = `{"investment": "${originalInvestment}",`
         if (reinvestbalance) {
-          stmt+= `"strategy": "You chose to reinvest ${reinvestEvery.label.toLowerCase()} for ${originalYears} years. You reinvested ${enoughToReinvestCounter} times earning you ${money(oginvestment)}.",`
+          stmt+= `"strategy": "You chose to reinvest ${reinvestEvery.label.toLowerCase()} for ${originalYears} years. You reinvested ${enoughToReinvestCounter} times earning you $${money(oginvestment)}.",`
         }
-        stmt+=`"balance": "${money(balance)}",`
+        if (balance)
+            stmt+=`"balance": "${money(balance)}",`
         
         if (reinvestbalance) {
-          stmt+=`"message": "You currently have: $${money(oginvestment)} invested, increasing your balance by $${money(oginvestment * i)} per day. At the end of year ${originalYears +1} you will be paid $${money(oginvestment * i * 365)}",`
+          stmt+=`"message": "You currently have: $${money(oginvestment)} invested, increasing your balance by $${money(oginvestment * i)} per day. Your reinvestments have added 1 year to your timeline. At the end of year ${originalYears +1} you will be paid $${money(oginvestment * i * 365)}",`
         }
         console.log(reinvestEvery.label)
         if (reinvestEvery.label === undefined) {
