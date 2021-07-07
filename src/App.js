@@ -25,6 +25,11 @@ export default function App() {
     if (!selectedOption)
       setSelectedOption("Never")
 
+    if (parseInt(invest) < 100) {
+      alert('The Lifestyle Trading Bot requires a minimum investment of $100 USD.')
+      return
+    }
+
     if (!invest || !yrs) {
       alert("Please enter a valid investment amount and the number of years you want to invest")
       return;
