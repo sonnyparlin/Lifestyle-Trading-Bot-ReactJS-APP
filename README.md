@@ -7,7 +7,7 @@ The <a  target="_new"  href="https://t.me/LifeStyleTrading_Bot?start=1wgcys1037"
 
 However, I'm happy to answer questions about the investment program via <a  href="https://t.me/sonnygrapples">telegram</a>. You can see what's happening under the hood by opening your browser's developer tools and clicking on the console. 
 
-If you find this calculator useful, please consider buying me a cup of coffee. I accept <a  href="https://www.paypal.com/biz/fund?id=U8TWRRPZYVQN8">PayPal</a>, <a  href="https://cash.app/$sonnyjitsu">CashApp</a>, <a  href="https://venmo.com/code?user_id=2385826935734272129">Venmo</a> and of course, <a  onClick={props.toggleBTC}  href="/#">Bitcoin</a> (39gt6rFTMhY8U5UFiqD4y2o9xzE7AdUhXw).</span></p>
+If you find this calculator useful, please consider buying me a cup of coffee. I accept <a  href="https://www.paypal.com/biz/fund?id=U8TWRRPZYVQN8">PayPal</a>, <a  href="https://cash.app/$sonnyjitsu">CashApp</a>, <a  href="https://venmo.com/code?user_id=2385826935734272129">Venmo</a> and of course, Bitcoin (39gt6rFTMhY8U5UFiqD4y2o9xzE7AdUhXw).</span></p>
 
 Currently deployed it to https://ltbc.netlify.app/  
 
