@@ -17,6 +17,7 @@ export default function Calculator(investment, years, reinvest) {
         let stmt;
         let balance=0
         let enoughToReinvestCounter=0
+        let final=0;
       
         if (reinvestEvery.label !== 'Never' && reinvestEvery.label !== undefined) {
 
@@ -24,7 +25,7 @@ export default function Calculator(investment, years, reinvest) {
                 //console.log('Year: '+yearCounter)
                 years--;
                 oginvestment=parseFloat(oginvestment)
-                for (let x=1;x<366;x++) {
+                for (let x=1;x<367;x++) {
                     
                     switch(reinvestEvery.label) {
                         case 'DAILY':
@@ -46,7 +47,7 @@ export default function Calculator(investment, years, reinvest) {
                           reinvestbalance=oginvestment * i * 365
                           break
                         default:
-                          reinvestbalance=0
+                          reinvestbalance=oginvestment * i * 365
                           break;
                     }
 
@@ -57,11 +58,14 @@ export default function Calculator(investment, years, reinvest) {
                     if (balance < reinvestbalance)
                         continue;
                     else {
-                        console.log("Reinvesting")
+                        console.log("Reinvesting " + parseFloat(balance).toFixed(2))
                         enoughToReinvestCounter++
-                        oginvestment += parseFloat(balance)
+                        if (reinvestEvery.label === 'YEARLY')
+                            oginvestment = parseFloat(balance)
+                        else
+                            oginvestment += parseFloat(balance)
+
                         balance = 0
-                        console.log(money(oginvestment))
                     }
                 }
             }
@@ -74,26 +78,14 @@ export default function Calculator(investment, years, reinvest) {
             stmt+=`"balance": "${money(balance)}",`
         
         if (reinvestbalance) {
-          stmt+=`"message": "You currently have: $${money(oginvestment)} invested, increasing your balance by $${money(oginvestment * i)} per day. Your reinvestments have added 1 year to your timeline. At the end of year ${originalYears +1} you will be paid $${money(oginvestment * i * 365)}",`
-        }
-        console.log(reinvestEvery.label)
-        if (reinvestEvery.label === undefined) {
-
-            const answer = () => {
-                balance=0
-                for(let x=0;x<originalYears;x++) {
-                  console.log(parseFloat(oginvestment).toFixed(2) + '\n')
-                  balance += (oginvestment * i) * 365;
-                  oginvestment=balance
-                }
-                return balance
-            }
-            
-            stmt+=`"profit": "$${money(answer())}"}`
-        } else if (reinvestEvery.label === 'Never') {
+            final = oginvestment * i * 365
+            stmt+=`"message": "You currently have: $${money(oginvestment)} invested, increasing your balance by $${money(oginvestment * i)} per day. Your reinvestments have added 1 year to your timeline. At the end of year ${originalYears +1} you will be paid $${money(final)}",`
+        }            
+        
+        if (reinvestEvery.label === 'Never') {
             stmt+=`"profit": "$${money(oginvestment * i * 365)}"}`
         } else
-            stmt+=`"profit": "$${money((oginvestment * i * 365) + balance - originalInvestment)}"}`
+            stmt+=`"profit": "$${money(final + balance - originalInvestment)}"}`
 
 
         return JSON.stringify(stmt)
