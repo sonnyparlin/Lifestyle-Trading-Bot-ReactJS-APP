@@ -4,7 +4,7 @@
 
 .App {
   text-align: left;
-  max-width:450px;
+  max-width:400px;
   width:90vw;
   color: #555;
   margin:0 auto;
@@ -93,9 +93,28 @@ button {
 }
 
 span {font-size: inherit;}
+#info {margin-bottom:0px;}
+#hideLink {
+  margin-bottom:10px;
+  text-align:left;
+  display:block;
+}
+
+#showLink {
+  margin-bottom:10px;
+  text-align:left;
+  display:block;
+}
+
 
 button:focus {
   outline:0px;
+}
+
+@media screen and (min-width: 900px) {
+  .control {
+    margin-right:40%;
+  }
 }
 
 @keyframes App-logo-spin {

@@ -33,6 +33,18 @@ export default function App() {
     setYears(parseInt(yrs))
   }
 
+  function hideLink(e) {
+    document.getElementById('info').style.display="none"
+    document.getElementById('hideLink').style.display="none"
+    document.getElementById('showLink').style.display="block"
+  }
+
+  function showLink(e) {
+    document.getElementById('info').style.display="block"
+    document.getElementById('hideLink').style.display="block"
+    document.getElementById('showLink').style.display="none"
+  }
+
   function checkYears() {
     let i = document.getElementById('years') ? document.getElementById('years').value : ""
     document.getElementById('years').value = parseInt(i)
@@ -63,7 +75,9 @@ export default function App() {
       <Greeting />
       <Form investment={investment}
             setSelectedOption={setSelectedOption}
-            years={years} 
+            years={years}
+            hideLink={hideLink}
+            showLink={showLink}
             checkYears={checkYears}
             handleClick={handleClick} />
       <DataResponse />
