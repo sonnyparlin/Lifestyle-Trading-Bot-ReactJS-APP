@@ -71,19 +71,25 @@ export default function Calculator(investment, years, reinvest) {
             }
         }
         stmt = `{"investment": "${originalInvestment}",`
-        if (reinvestbalance) {
+        if (reinvestEvery.label === 'Never')
+          stmt+= `"strategy": "You chose to not to reinvest.",`
+        else
           stmt+= `"strategy": "You chose to reinvest ${reinvestEvery.label.toLowerCase()} for ${originalYears} years. You reinvested ${enoughToReinvestCounter} times earning you $${money(oginvestment)}.",`
-        }
-        if (balance)
-            stmt+=`"balance": "${money(balance)}",`
         
-        if (reinvestbalance) {
-            final = oginvestment * i * 365
-            stmt+=`"message": "You currently have: $${money(oginvestment)} invested, increasing your balance by $${money(oginvestment * i)} per day. Your reinvestments have added 1 year to your timeline. At the end of year ${originalYears +1} you will be paid $${money(final)}",`
-        }            
+        if (balance)
+          stmt+=`"balance": "${money(balance)}",`
+      
+        final = oginvestment * i * 365
+        
+        stmt+=`"message": "You currently have: $${money(oginvestment)} invested, increasing your balance by $${money(oginvestment * i)} per day. `
+
+        if (reinvestEvery.label === 'Never')
+          stmt+=`At the end of year ${originalYears} you will be paid $${money(final)}",`
+        else
+          stmt+=`Your reinvestments have added 1 year to your timeline. At the end of year ${originalYears +1} you will be paid $${money(final)}",`          
         
         if (reinvestEvery.label === 'Never') {
-            stmt+=`"profit": "$${money(oginvestment * i * 365)}"}`
+            stmt+=`"profit": "$${money(oginvestment * i * 365 - originalInvestment)}"}`
         } else
             stmt+=`"profit": "$${money(final + balance - originalInvestment)}"}`
 
