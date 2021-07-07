@@ -3,15 +3,13 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/83c70766-747b-4548-80ef-8590dc6c7484/deploy-status)](https://app.netlify.com/sites/ltbc/deploys)
 
-The <a  target="_new"  href="https://t.me/LifeStyleTrading_Bot?start=1wgcys1037">Lifestyle Trading Bot</a> accepts a deposit made via bitcoin to a one time address it provides to you each time you invest. As soon as the deposit is made you will start earning 0.466% of what you invested <b>every day</b> for 365 days. Once your balance reaches \$100 you can either take the money out or reinvest it, or you can simply wait and collect. This app is not affiliated with the LTB program, I am just a fan and fellow investor. 
+The <a  target="_new"  href="https://ltbc.netlify.app/">Lifestyle Trading Bot Calculator</a> is a calculator app for the <a target="_new" href="https://t.me/LifeStyleTrading_Bot?start=1wgcys1037">Lifestyle Trading Bot</a>. The Lifestyle Trading Bot accepts a deposit made via bitcoin to a one time address it provides to you each time you invest. As soon as the deposit is made you will start earning 0.466% of what you invested <b>every day</b> for 365 days. Once your balance reaches \$100 you can either take the money out or reinvest it, or you can simply wait and collect. This app is not affiliated with the LTB program, I am just a fan and fellow investor. 
 
 However, I'm happy to answer questions about the investment program via <a  href="https://t.me/sonnygrapples">telegram</a>. You can see what's happening under the hood by opening your browser's developer tools and clicking on the console. 
 
 If you find this calculator useful, please consider buying me a cup of coffee. I accept <a  href="https://www.paypal.com/biz/fund?id=U8TWRRPZYVQN8">PayPal</a>, <a  href="https://cash.app/$sonnyjitsu">CashApp</a>, <a  href="https://venmo.com/code?user_id=2385826935734272129">Venmo</a> and of course, Bitcoin (39gt6rFTMhY8U5UFiqD4y2o9xzE7AdUhXw).</span></p>
 
-Currently deployed it to https://ltbc.netlify.app/  
-
-Fore more information visit the <a  target="_new" href="https://t.me/LifeStyleTrading_Bot?start=1wgcys1037">Lifestyle Trading Bot</a> on Telegram.
+Fore more information visit the <a target="_new" href="https://t.me/LifeStyleTrading_Bot?start=1wgcys1037">Lifestyle Trading Bot</a> on Telegram.
 
 ### FAQ: 
 
