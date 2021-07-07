@@ -92,6 +92,8 @@ button {
   margin-top:20px;
 }
 
+span {font-size: inherit;}
+
 button:focus {
   outline:0px;
 }

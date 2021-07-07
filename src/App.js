@@ -39,13 +39,22 @@ export default function App() {
   }
 
   const Greeting = () => {
-    return  <h1>Lifestyle Trading Bot Strategy</h1>
+    return  <h1>Lifestyle Trading Bot Calculator</h1>
   }
 
   const DataResponse = () => {
-    if (strategy.hasOwnProperty('investment'))
-      return <ReactJson src={strategy} />
-    else
+    if (strategy.hasOwnProperty('investment')) {
+      //return <ReactJson src={strategy} />
+      return (
+        <>
+        <h4>Initial investment: <span style={{color:'red'}}>${strategy.investment}</span></h4>
+        <p>Strategy: {strategy.strategy}</p>
+        <p>Balance: {strategy.balance}</p>
+        <p>{strategy.message}</p>
+        <h4>Net profit: <span style={{color:'green'}}>{strategy.profit}</span></h4>
+        </>
+      )
+    } else
       return ""
   }
     

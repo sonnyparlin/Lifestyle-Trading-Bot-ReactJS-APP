@@ -18,57 +18,57 @@ export default function Calculator(investment, years, reinvest) {
         let balance=0
         let enoughToReinvestCounter=0
       
-        switch(reinvestEvery.label) {
-          case 'DAILY':
-            reinvestbalance=100
-          break;
-          case 'WEEKLY':
-            reinvestbalance=Math.max(originalInvestment * i * 7, 100)
-          break;
-          case 'MONTHLY':
-            reinvestbalance=Math.max(originalInvestment * i * 30, 100)
-          break;
-          case 'QUARTERLY':
-            reinvestbalance=Math.max(originalInvestment * i * 90, 100)
-          break
-          case 'SIXMONTHS':
-            reinvestbalance=Math.max(originalInvestment * i * 182.5,100)
-          break;
-          case 'YEARLY':
-            reinvestbalance=originalInvestment * i * 365
-            break
-          default:
-            reinvestbalance=0
-            break;
-        }
-      
-        
         if (reinvestEvery.label !== 'Never' && reinvestEvery.label !== undefined) {
 
             while (years > 0) {
                 //console.log('Year: '+yearCounter)
                 years--;
                 oginvestment=parseFloat(oginvestment)
-                for (let x=0;x<365;x++) {
-                    console.log('oginvestment '+parseFloat(oginvestment).toFixed(2))
+                for (let x=1;x<366;x++) {
+                    
+                    switch(reinvestEvery.label) {
+                        case 'DAILY':
+                          reinvestbalance=100
+                        break;
+                        case 'WEEKLY':
+                          reinvestbalance=Math.max(oginvestment * i * 7, 100)
+                        break;
+                        case 'MONTHLY':
+                          reinvestbalance=Math.max(oginvestment * i * 30, 100)
+                        break;
+                        case 'QUARTERLY':
+                          reinvestbalance=Math.max(oginvestment * i * 90, 100)
+                        break
+                        case 'SIXMONTHS':
+                          reinvestbalance=Math.max(oginvestment * i * 182.5,100)
+                        break;
+                        case 'YEARLY':
+                          reinvestbalance=oginvestment * i * 365
+                          break
+                        default:
+                          reinvestbalance=0
+                          break;
+                    }
+
+                    console.log('investment '+money(oginvestment))
                     balance += oginvestment * i
-                    console.log('Day: '+x+' ' +parseFloat(balance).toFixed(2))
-            
+                    console.log('Day: '+x+' ' +money(balance))
+                    console.log('reinvestbalance: ' + money(reinvestbalance))
                     if (balance < reinvestbalance)
                         continue;
                     else {
-                        console.log("we are here")
+                        console.log("Reinvesting")
                         enoughToReinvestCounter++
                         oginvestment += parseFloat(balance)
                         balance = 0
-                        console.log(parseFloat(oginvestment).toFixed(2))
+                        console.log(money(oginvestment))
                     }
                 }
             }
         }
         stmt = `{"investment": "${originalInvestment}",`
         if (reinvestbalance) {
-          stmt+= `"strategy": "You chose to reinvest ${reinvestEvery.label} for ${originalYears} years. You reinvested ${enoughToReinvestCounter} times earning you ${money(oginvestment)}.",`
+          stmt+= `"strategy": "You chose to reinvest ${reinvestEvery.label.toLowerCase()} for ${originalYears} years. You reinvested ${enoughToReinvestCounter} times earning you ${money(oginvestment)}.",`
         }
         stmt+=`"balance": "${money(balance)}",`
         
