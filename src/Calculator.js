@@ -30,7 +30,7 @@ export default function Calculator(investment, years, reinvest) {
                 //console.log('Year: '+yearCounter)
                 years--;
                 oginvestment=parseFloat(oginvestment)
-                for (let x=1;x<367;x++) {
+                for (let x=1;x<366;x++) {
                     
                     switch(reinvestLABEL) {
                         case 'DAILY':
@@ -97,7 +97,7 @@ export default function Calculator(investment, years, reinvest) {
         if (reinvestLABEL === 'Never') {
             stmt+=`"profit": "$${money(oginvestment * i * 365 - originalInvestment)}"}`
         } else
-            stmt+=`"profit": "$${money(final + balance - originalInvestment)}"}`
+            stmt+=`"profit": "$${money(final - originalInvestment)}"}`
 
 
         return JSON.stringify(stmt)
