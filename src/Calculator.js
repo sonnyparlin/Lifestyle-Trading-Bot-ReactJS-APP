@@ -81,6 +81,11 @@ export default function Calculator(investment, years, reinvest) {
             }
         }
 
+        if (balance > 100) {
+          oginvestment += balance
+          balance = 0
+        }
+
         stmt = `{"investment": "${money(originalInvestment)}",`
         if (reinvestLABEL === 'Never')
           stmt+= `"strategy": "You chose not to reinvest.",`
@@ -102,7 +107,7 @@ export default function Calculator(investment, years, reinvest) {
         if (reinvestLABEL === 'Never') {
             stmt+=`"profit": "$${money(oginvestment * i * 365 - originalInvestment)}"}`
         } else
-            stmt+=`"profit": "$${money(final - originalInvestment)}"}`
+            stmt+=`"profit": "$${money(final + balance - originalInvestment)}"}`
 
 
         return JSON.stringify(stmt)

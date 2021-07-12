@@ -142,7 +142,7 @@ export default function App() {
         <>
         <h4>Initial investment: <span style={{color:'red'}}>${strategy.investment}</span></h4>
         <p>Strategy: {strategy.strategy}</p>
-        {strategy.balance > 0 ? <p>Balance: {strategy.balance}</p> : ""}
+        {strategy.balance > 0 ? <p>Balance: ${strategy.balance} (will be added to profit)</p> : ""}
         <p>{strategy.message}</p>
         <h4>Net profit: <span style={{color:'green'}}>{strategy.profit}</span></h4>
         </>
