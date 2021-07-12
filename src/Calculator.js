@@ -28,6 +28,7 @@ export default function Calculator(investment, years, reinvest) {
 
             while (years > 0) {
                 //console.log('Year: '+yearCounter)
+                let currentInvestment = oginvestment
                 years--;
                 oginvestment=parseFloat(oginvestment)
                 for (let x=1;x<366;x++) {
@@ -59,11 +60,10 @@ export default function Calculator(investment, years, reinvest) {
                     console.log('investment '+money(oginvestment))
                     balance += oginvestment * i
                     console.log('Day: '+x+' ' +money(balance))
-                    console.log('reinvestbalance: ' + money(reinvestbalance))
                     if (balance < reinvestbalance)
                         continue;
                     else {
-                        console.log("Reinvesting " + parseFloat(balance).toFixed(2))
+                        console.log("REINVESTING " + parseFloat(balance).toFixed(2))
                         enoughToReinvestCounter++
                         if (reinvestLABEL === 'YEARLY')
                             oginvestment = parseFloat(balance)
@@ -73,10 +73,12 @@ export default function Calculator(investment, years, reinvest) {
                         balance = 0
                     }
                 }
+                if (reinvestLABEL !== 'YEARLY')
+                  oginvestment -= currentInvestment
             }
         }
 
-        stmt = `{"investment": "${originalInvestment}",`
+        stmt = `{"investment": "${money(originalInvestment)}",`
         if (reinvestLABEL === 'Never')
           stmt+= `"strategy": "You chose not to reinvest.",`
         else
