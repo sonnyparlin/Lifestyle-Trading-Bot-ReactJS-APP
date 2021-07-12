@@ -19,6 +19,7 @@ export default function Calculator(investment, years, reinvest) {
         let enoughToReinvestCounter=0
         let final=0;
         let reinvestLABEL='Never'
+        let days=0
 
         reinvestLABEL = reinvestEvery.label
         if (!reinvestLABEL)
@@ -63,6 +64,7 @@ export default function Calculator(investment, years, reinvest) {
                     if (balance < reinvestbalance)
                         continue;
                     else {
+                        days=x
                         console.log("REINVESTING " + parseFloat(balance).toFixed(2))
                         enoughToReinvestCounter++
                         if (reinvestLABEL === 'YEARLY')
@@ -95,7 +97,7 @@ export default function Calculator(investment, years, reinvest) {
         if (reinvestLABEL === 'Never')
           stmt+=`At the end of year ${originalYears} you will be paid $${money(final)}",`
         else
-          stmt+=`Your reinvestments have added 1 year to your timeline. At the end of year ${originalYears +1} you will be paid $${money(final)}",`          
+          stmt+=`Your reinvestments have added ${days} days to your timeline. In ${originalYears} years and ${days} days, your last investment of ${money(oginvestment)} will pay you $${money(final)}",`          
         
         if (reinvestLABEL === 'Never') {
             stmt+=`"profit": "$${money(oginvestment * i * 365 - originalInvestment)}"}`
