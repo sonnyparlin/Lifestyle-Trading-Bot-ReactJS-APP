@@ -73,6 +73,7 @@ export default function Calculator(investment, years, reinvest) {
                         balance = 0
                     }
                 }
+                // at the end of the 365 days remove the current investment from total invested
                 if (reinvestLABEL !== 'YEARLY')
                   oginvestment -= currentInvestment
             }
