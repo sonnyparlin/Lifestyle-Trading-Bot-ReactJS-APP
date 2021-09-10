@@ -80,7 +80,7 @@ export default function Form(props) {
         
         <a style={{display:'none'}} id="showLink" href="/#" onClick={props.showLink}><small>Show description</small></a>
         
-        <p>Check out the <a target="_new" href="https://t.me/LifeStyleTrading_Bot?start=1wgcys1037">Lifestyle Trading Bot</a> on <a target="_new" href="https://telegram.org/">Telegram</a>. You can also checkout the <a target="_new" href="https://lifestyletrading.xyz/login/">online dashboard app</a> after you download Telegram and <a href="https://t.me/LifeStyleTrading_Bot?start=1wgcys1037">connect to the bot</a>.
+        <p>Check out the <a target="_new" href="https://t.me/LifeStyleTrading_Bot?start=1wgcys1037">Lifestyle Trading Bot</a> on <a target="_new" href="https://telegram.org/">Telegram</a>. You can also checkout the <a target="_new" href="https://lifestyletrading.io/login/">online dashboard app</a> after you download Telegram and <a href="https://t.me/LifeStyleTrading_Bot?start=1wgcys1037">connect to the bot</a>.
         </p> 
         
         <div className="formFields">
